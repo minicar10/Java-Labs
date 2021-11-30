@@ -24,7 +24,7 @@ public class Main {
             System.out.println("12. SET X – CHANGES THE VALUE AT SPOT X TO THE VALUE ENTERED BY THE USER");
             System.out.println("13. IS EMPTY – TELL YOU IF THE LIST IS EMPTY OF NOT");
             System.out.println("14. CLEAR – EMPTIES THE LIST");
-            System.out.println("15. EXIT – CLOSES THE PROGRAM");
+            System.out.println(" 0. EXIT – CLOSES THE PROGRAM");
 
             System.out.println("ENTER YOUR CHOICE: ");
             int choice = scanner.nextInt();
