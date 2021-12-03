@@ -5,8 +5,10 @@ import java.util.LinkedList;
 public class HashTable<T> {
     private LinkedList<T>[] table;
 
-    public HashTable() {
-        table = new LinkedList[10];
+    private int greatestNonEmpty = 0;
+
+    public HashTable(int size) {
+        table = new LinkedList[size];
     }
 
     public void add(T element) {
@@ -23,15 +25,25 @@ public class HashTable<T> {
             table[index] = new LinkedList<>();
         }
 
+        if (index > greatestNonEmpty) {
+            greatestNonEmpty = index;
+        }
+
         table[index].add(element);
     }
 
     public String toString() {
-        String returnString = "";
+        String returnString = "HASHTABLE\n";
 
         for (int i = 0; i < table.length; i++) {
-            if (table[i] != null) {
-                returnString += "Bucket " + i + ": " + table[i] + "\n";
+            if (i <= greatestNonEmpty) {
+                returnString += "Bucket " + i + ": ";
+                if (table[i] != null) {
+
+                    // regex that removes all braces and commas of the tostring array
+                    returnString += table[i].toString().replaceAll("\\[|\\]|,|\\s", " ");
+                }
+                returnString += "\n";
             }
         }
 
