@@ -39,8 +39,7 @@ public class HashTable<T> {
             if (i <= greatestNonEmpty) {
                 returnString += "Bucket " + i + ": ";
                 if (table[i] != null) {
-
-                    // regex that removes all braces and commas of the tostring array
+                    // regex that removes all braces and commas of the array below
                     returnString += table[i].toString().replaceAll("\\[|\\]|,|\\s", " ");
                 }
                 returnString += "\n";
