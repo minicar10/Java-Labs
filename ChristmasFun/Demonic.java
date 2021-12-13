@@ -15,22 +15,59 @@ public class Demonic {
         return false;
     }
 
-    static String prefixToInfix(String expression) {
-        String[] tokens = expression.split(" ");
-
-        throw new UnsupportedOperationException("Not implemented yet.");
+    static String prefixToInfix(String prefix) {
+        String[] tokens = prefix.split(" ");
+        Stack<String> stack = new Stack<String>();
+        for (String token : tokens) {
+            if (isOperator(token)) {
+                String op2 = stack.pop();
+                String op1 = stack.pop();
+                stack.push("(" + op1 + token + op2 + ")");
+            } else {
+                stack.push(token);
+            }
+        }
+        return stack.pop();
     }
 
-    static String postFixToInfix(String expression) {
-        String[] tokens = expression.split(" ");
-
-        throw new UnsupportedOperationException("Not implemented yet.");
+    static String postfixToInfix(String postfix) {
+        String[] tokens = postfix.split(" ");
+        Stack<String> stack = new Stack<String>();
+        for (String token : tokens) {
+            if (isOperator(token)) {
+                String op2 = stack.pop();
+                String op1 = stack.pop();
+                stack.push("(" + op1 + token + op2 + ")");
+            } else {
+                stack.push(token);
+            }
+        }
+        return stack.pop();
     }
 
-    static int evaluateInfixExpression(String expression) {
+    static double evaluate(String expression) {
         String[] tokens = expression.split(" ");
-
-        throw new UnsupportedOperationException("Not implemented yet.");
+        Stack<Double> stack = new Stack<Double>();
+        for (String token : tokens) {
+            if (isOperator(token)) {
+                double op2 = stack.pop();
+                double op1 = stack.pop();
+                if (token.equals("+")) {
+                    stack.push(op1 + op2);
+                } else if (token.equals("-")) {
+                    stack.push(op1 - op2);
+                } else if (token.equals("*")) {
+                    stack.push(op1 * op2);
+                } else if (token.equals("/")) {
+                    stack.push(op1 / op2);
+                } else if (token.equals("^")) {
+                    stack.push(Math.pow(op1, op2));
+                }
+            } else {
+                stack.push(Double.parseDouble(token));
+            }
+        }
+        return stack.pop();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -49,15 +86,8 @@ public class Demonic {
             }
         }
 
-        for (String expression : infixEntries) {
-            System.out.println(evaluateInfixExpression(expression));
+        for (String entry : infixEntries) {
+            System.out.println(entry + " = " + evaluate(entry));
         }
-    }
-}
-
-class Expression {
-
-    public Expression(String expression) {
-
     }
 }
