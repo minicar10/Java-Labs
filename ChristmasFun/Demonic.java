@@ -80,7 +80,7 @@ public class Demonic {
             if (isOperator(prospective.substring(0, 1))) {
                 infixEntries.add(prefixToInfix(prospective));
             } else if (isOperator(prospective.substring(prospective.length() - 1, prospective.length()))) {
-                infixEntries.add(postFixToInfix(prospective));
+                infixEntries.add(postfixToInfix(prospective));
             } else {
                 infixEntries.add(prospective);
             }
